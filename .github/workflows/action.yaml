@@ -1,0 +1,26 @@
+name: Install Dependencies
+
+on:
+  push:
+    branches:
+      - main  # Change this to match the branch you want to trigger the workflow on
+      - dev   # Add more branches if needed
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  install-dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20  # Change this to the required Node.js version
+
+      - name: Install dependencies
+        run: npm install
